@@ -13,3 +13,13 @@ Use `docker network ls` para conferir o nome da rede se renomear o diretório. D
 SLO proposto: 99,9% das requisições da aplicação sem 5xx em janela de 30 dias; p95 menor que 300ms. Orçamento de erro: 0,1% das requisições. Probes e scrape ficam fora do denominador. Falhas antes de chegar à API não entram neste SLI: próxima fase adiciona blackbox externo e duas janelas de burn rate. Não há histórico suficiente no MVP para afirmar cumprimento de SLO.
 
 Este Compose observa sua própria API; não observa automaticamente os pods kind. Próxima fase: Prometheus Operator no cluster, ServiceMonitor por pod, kube-state-metrics, node-exporter, Alertmanager, armazenamento e autenticação. Coletar somente o Service pode ocultar falha de uma réplica.
+
+Também é possível validar regras e executar carga sem Docker após instalar os binários com lock:
+
+```bash
+python3 scripts/install_tool.py promtool
+python3 scripts/install_tool.py k6
+artifacts/bin/promtool check rules observability/rules.yaml
+(cd observability && ../artifacts/bin/promtool test rules rules.test.yaml)
+artifacts/bin/k6 run -e BASE_URL=http://127.0.0.1:8000 observability/load.js
+```

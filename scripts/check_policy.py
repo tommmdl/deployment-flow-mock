@@ -1,5 +1,7 @@
 """Invariantes de segurança complementares ao schema Kubernetes."""
 
+import hashlib
+import json
 import re
 from pathlib import Path
 
@@ -25,3 +27,9 @@ for path in Path(".github/workflows").glob("*.yml"):
     for action in re.findall(r"uses: ([^\s]+)", text):
         assert action.startswith("./") or re.search(r"@[0-9a-f]{40}$", action), action
 print("Políticas: manifests e SHAs de Actions OK")
+
+for name, source in json.loads(Path("infra/schemas/sources.json").read_text()).items():
+    assert hashlib.sha256((Path("infra/schemas") / name).read_bytes()).hexdigest() == source["sha256"]
+argo_hash = Path("docs/argocd-source.txt").read_text().split("sha256: ")[1].strip()
+assert hashlib.sha256(Path("infra/kind/argocd-install.yaml").read_bytes()).hexdigest() == argo_hash
+print("Integridade: Argo CD e schemas vendorizados OK")
