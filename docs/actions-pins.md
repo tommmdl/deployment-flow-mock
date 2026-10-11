@@ -10,7 +10,6 @@ As tags abaixo foram resolvidas pela API oficial `GET /repos/{owner}/{repo}/comm
 | docker/build-push-action | v6 | 10e90e3645eae34f1e60eeb005ba3a3d33f178e8 |
 | actions/attest-build-provenance | v3 | 977bb373ede98d70efdf65b84cb5f73e068dcc2a |
 | peter-evans/create-pull-request | v7 | 22a9089034f40e5a961c8808d113e2c98fb63676 |
-
 | aws-actions/configure-aws-credentials | v5 | 61815dcd50bd041e203e49132bacad1fd04d2708 |
 
 [GitHub: uso seguro de Actions](https://docs.github.com/en/actions/reference/security/secure-use).

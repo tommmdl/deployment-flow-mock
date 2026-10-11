@@ -1,0 +1,70 @@
+Fonte: https://github.com/tommmdl/deployment-flow-mock/actions/runs/38182512174
+Commit: 7f4eb192198abd8c5e9764b211079273418be2da
+Trechos literais selecionados do log oficial:
+
+quality	Temporary cluster integration	2026-10-11T23:00:39.0389506Z namespace/deployment-flow created
+quality	Temporary cluster integration	2026-10-11T23:00:39.0485159Z service/api created
+quality	Temporary cluster integration	2026-10-11T23:00:39.0576532Z deployment.apps/api created
+quality	Temporary cluster integration	2026-10-11T23:00:43.7496965Z deployment "api" successfully rolled out
+quality	Temporary cluster integration	2026-10-11T23:00:44.8458345Z Smoke HTTP: endpoints, readiness, métricas e cálculo OK
+quality	Load test against kind	2026-10-11T23:00:45.8985681Z running (0m01.0s), 01/10 VUs, 9 complete and 0 interrupted iterations
+quality	Load test against kind	2026-10-11T23:00:46.8982191Z running (0m02.0s), 01/10 VUs, 19 complete and 0 interrupted iterations
+quality	Load test against kind	2026-10-11T23:00:47.8984238Z running (0m03.0s), 02/10 VUs, 32 complete and 0 interrupted iterations
+quality	Load test against kind	2026-10-11T23:00:48.8986147Z running (0m04.0s), 02/10 VUs, 52 complete and 0 interrupted iterations
+quality	Load test against kind	2026-10-11T23:00:49.8980679Z running (0m05.0s), 02/10 VUs, 72 complete and 0 interrupted iterations
+quality	Load test against kind	2026-10-11T23:00:50.8989522Z running (0m06.0s), 03/10 VUs, 101 complete and 0 interrupted iterations
+quality	Load test against kind	2026-10-11T23:00:51.8985955Z running (0m07.0s), 03/10 VUs, 129 complete and 0 interrupted iterations
+quality	Load test against kind	2026-10-11T23:00:52.8983305Z running (0m08.0s), 04/10 VUs, 162 complete and 0 interrupted iterations
+quality	Load test against kind	2026-10-11T23:00:53.8983292Z running (0m09.0s), 04/10 VUs, 202 complete and 0 interrupted iterations
+quality	Load test against kind	2026-10-11T23:00:54.8982311Z running (0m10.0s), 04/10 VUs, 240 complete and 0 interrupted iterations
+quality	Load test against kind	2026-10-11T23:00:55.8987557Z running (0m11.0s), 05/10 VUs, 289 complete and 0 interrupted iterations
+quality	Load test against kind	2026-10-11T23:00:56.8985853Z running (0m12.0s), 05/10 VUs, 337 complete and 0 interrupted iterations
+quality	Load test against kind	2026-10-11T23:00:57.8983120Z running (0m13.0s), 05/10 VUs, 385 complete and 0 interrupted iterations
+quality	Load test against kind	2026-10-11T23:00:58.8981435Z running (0m14.0s), 05/10 VUs, 434 complete and 0 interrupted iterations
+quality	Load test against kind	2026-10-11T23:00:59.8980664Z running (0m15.0s), 05/10 VUs, 480 complete and 0 interrupted iterations
+quality	Load test against kind	2026-10-11T23:01:00.8984232Z running (0m16.0s), 05/10 VUs, 530 complete and 0 interrupted iterations
+quality	Load test against kind	2026-10-11T23:01:01.8980058Z running (0m17.0s), 06/10 VUs, 589 complete and 0 interrupted iterations
+quality	Load test against kind	2026-10-11T23:01:02.8981192Z running (0m18.0s), 06/10 VUs, 644 complete and 0 interrupted iterations
+quality	Load test against kind	2026-10-11T23:01:03.8982094Z running (0m19.0s), 06/10 VUs, 704 complete and 0 interrupted iterations
+quality	Load test against kind	2026-10-11T23:01:04.8980798Z running (0m20.0s), 06/10 VUs, 764 complete and 0 interrupted iterations
+quality	Load test against kind	2026-10-11T23:01:05.8984447Z running (0m21.0s), 06/10 VUs, 818 complete and 0 interrupted iterations
+quality	Load test against kind	2026-10-11T23:01:06.8983297Z running (0m22.0s), 06/10 VUs, 878 complete and 0 interrupted iterations
+quality	Load test against kind	2026-10-11T23:01:07.8983642Z running (0m23.0s), 07/10 VUs, 941 complete and 0 interrupted iterations
+quality	Load test against kind	2026-10-11T23:01:08.8981682Z running (0m24.0s), 07/10 VUs, 1011 complete and 0 interrupted iterations
+quality	Load test against kind	2026-10-11T23:01:09.8991488Z running (0m25.0s), 07/10 VUs, 1074 complete and 0 interrupted iterations
+quality	Load test against kind	2026-10-11T23:01:10.8982772Z running (0m26.0s), 07/10 VUs, 1144 complete and 0 interrupted iterations
+quality	Load test against kind	2026-10-11T23:01:11.8985781Z running (0m27.0s), 07/10 VUs, 1211 complete and 0 interrupted iterations
+quality	Load test against kind	2026-10-11T23:01:12.8995399Z running (0m28.0s), 07/10 VUs, 1277 complete and 0 interrupted iterations
+quality	Load test against kind	2026-10-11T23:01:13.8981451Z running (0m29.0s), 08/10 VUs, 1356 complete and 0 interrupted iterations
+quality	Load test against kind	2026-10-11T23:01:14.8987111Z running (0m30.0s), 08/10 VUs, 1429 complete and 0 interrupted iterations
+quality	Load test against kind	2026-10-11T23:01:15.8990912Z running (0m31.0s), 08/10 VUs, 1509 complete and 0 interrupted iterations
+quality	Load test against kind	2026-10-11T23:01:16.8982226Z running (0m32.0s), 08/10 VUs, 1582 complete and 0 interrupted iterations
+quality	Load test against kind	2026-10-11T23:01:17.8984840Z running (0m33.0s), 08/10 VUs, 1661 complete and 0 interrupted iterations
+quality	Load test against kind	2026-10-11T23:01:18.8980441Z running (0m34.0s), 08/10 VUs, 1741 complete and 0 interrupted iterations
+quality	Load test against kind	2026-10-11T23:01:19.8984258Z running (0m35.0s), 09/10 VUs, 1823 complete and 0 interrupted iterations
+quality	Load test against kind	2026-10-11T23:01:20.8990269Z running (0m36.0s), 09/10 VUs, 1913 complete and 0 interrupted iterations
+quality	Load test against kind	2026-10-11T23:01:21.8987222Z running (0m37.0s), 09/10 VUs, 1996 complete and 0 interrupted iterations
+quality	Load test against kind	2026-10-11T23:01:22.8983370Z running (0m38.0s), 09/10 VUs, 2084 complete and 0 interrupted iterations
+quality	Load test against kind	2026-10-11T23:01:23.8983765Z running (0m39.0s), 09/10 VUs, 2170 complete and 0 interrupted iterations
+quality	Load test against kind	2026-10-11T23:01:24.8984724Z running (0m40.0s), 09/10 VUs, 2260 complete and 0 interrupted iterations
+quality	Load test against kind	2026-10-11T23:01:25.8982422Z running (0m41.0s), 10/10 VUs, 2354 complete and 0 interrupted iterations
+quality	Load test against kind	2026-10-11T23:01:26.8983339Z running (0m42.0s), 09/10 VUs, 2441 complete and 0 interrupted iterations
+quality	Load test against kind	2026-10-11T23:01:27.8985483Z running (0m43.0s), 08/10 VUs, 2520 complete and 0 interrupted iterations
+quality	Load test against kind	2026-10-11T23:01:28.8987487Z running (0m44.0s), 07/10 VUs, 2589 complete and 0 interrupted iterations
+quality	Load test against kind	2026-10-11T23:01:29.8982600Z running (0m45.0s), 06/10 VUs, 2647 complete and 0 interrupted iterations
+quality	Load test against kind	2026-10-11T23:01:30.8981978Z running (0m46.0s), 05/10 VUs, 2695 complete and 0 interrupted iterations
+quality	Load test against kind	2026-10-11T23:01:31.8987606Z running (0m47.0s), 04/10 VUs, 2734 complete and 0 interrupted iterations
+quality	Load test against kind	2026-10-11T23:01:32.8980553Z running (0m48.0s), 03/10 VUs, 2765 complete and 0 interrupted iterations
+quality	Load test against kind	2026-10-11T23:01:33.8986914Z running (0m49.0s), 02/10 VUs, 2785 complete and 0 interrupted iterations
+quality	Load test against kind	2026-10-11T23:01:34.8987660Z running (0m50.0s), 01/10 VUs, 2796 complete and 0 interrupted iterations
+quality	Load test against kind	2026-10-11T23:01:34.9538361Z   █ THRESHOLDS 
+quality	Load test against kind	2026-10-11T23:01:34.9539444Z     http_req_duration
+quality	Load test against kind	2026-10-11T23:01:34.9539897Z     http_req_failed
+quality	Load test against kind	2026-10-11T23:01:34.9540573Z     checks_total.......: 2797    55.891692/s
+quality	Load test against kind	2026-10-11T23:01:34.9540832Z     checks_succeeded...: 100.00% 2797 out of 2797
+quality	Load test against kind	2026-10-11T23:01:34.9541933Z     http_req_duration..............: avg=3.18ms   min=1.16ms   med=2.83ms   max=21ms     p(90)=5.18ms   p(95)=6.17ms 
+quality	Load test against kind	2026-10-11T23:01:34.9542889Z     http_req_failed................: 0.00%  0 out of 2797
+quality	Load test against kind	2026-10-11T23:01:34.9543171Z     http_reqs......................: 2797   55.891692/s
+quality	Load test against kind	2026-10-11T23:01:34.9545530Z running (0m50.0s), 00/10 VUs, 2797 complete and 0 interrupted iterations
+quality	Remove temporary cluster	2026-10-11T23:01:35.0719249Z Deleting cluster "deployment-flow" ...
+quality	Remove temporary cluster	2026-10-11T23:01:36.9907003Z Deleted nodes: ["deployment-flow-control-plane"]
