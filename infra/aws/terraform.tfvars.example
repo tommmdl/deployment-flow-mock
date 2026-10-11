@@ -1,0 +1,4 @@
+owner = "SUBSTITUA"
+admin_cidrs = ["192.0.2.1/32"] # exemplo documental; use seu IP
+budget_email = "owner@example.com"
+budget_usd = 250

@@ -1,0 +1,21 @@
+rule_files: [rules.yaml]
+evaluation_interval: 1m
+tests:
+  - interval: 1m
+    input_series:
+      - series: 'up{job="api",instance="api:8000"}'
+        values: '0+0x10'
+    alert_rule_test:
+      - eval_time: 3m
+        alertname: APIUnavailable
+        exp_alerts:
+          - exp_labels: {job: api, instance: 'api:8000', severity: critical}
+            exp_annotations: {summary: 'API não pode ser coletada', runbook: docs/runbooks.md}
+  - interval: 1m
+    input_series:
+      - series: 'up{job="api",instance="api:8000"}'
+        values: '1+0x10'
+    alert_rule_test:
+      - eval_time: 3m
+        alertname: APIUnavailable
+        exp_alerts: []

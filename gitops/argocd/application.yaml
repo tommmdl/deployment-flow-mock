@@ -1,0 +1,15 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata: {name: deployment-flow, namespace: argocd}
+spec:
+  project: deployment-flow
+  source:
+    repoURL: https://github.com/tommmdl/deployment-flow-mock.git
+    targetRevision: main
+    path: gitops/overlays/production
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: deployment-flow
+  syncPolicy:
+    automated: {prune: true, selfHeal: true}
+    syncOptions: [CreateNamespace=true]

@@ -1,0 +1,70 @@
+name: CI
+on:
+  pull_request:
+  workflow_call:
+permissions:
+  contents: read
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  quality:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6
+        with:
+          python-version: '3.12'
+      - run: |
+          pip install --require-hashes -r app/requirements-dev.txt
+          make lint test PYTHON=python
+          pip-audit -r app/requirements.txt --require-hashes
+      - name: Install checksum-locked tools
+        run: |
+          for tool in kind kubectl gitleaks trivy kubeconform terraform promtool k6; do python scripts/install_tool.py "$tool"; done
+          echo "$PWD/artifacts/bin" >> "$GITHUB_PATH"
+      - name: Secrets and manifests
+        run: |
+          artifacts/bin/gitleaks git --redact --no-banner
+          bash scripts/validate_manifests.sh
+          artifacts/bin/terraform -chdir=infra/aws fmt -check
+          artifacts/bin/terraform -chdir=infra/aws init -backend=false -input=false -lockfile=readonly
+          artifacts/bin/terraform -chdir=infra/aws validate
+      - name: Validate alert rules
+        run: |
+          artifacts/bin/promtool check config --syntax-only observability/prometheus.yaml
+          artifacts/bin/promtool check rules observability/rules.yaml
+          cd observability
+          ../artifacts/bin/promtool test rules rules.test.yaml
+      - name: Build and vulnerability analysis
+        run: |
+          docker build -t deployment-flow:local .
+          artifacts/bin/trivy image --scanners vuln --severity HIGH,CRITICAL --exit-code 1 deployment-flow:local
+          artifacts/bin/trivy config --severity HIGH,CRITICAL --exit-code 1 gitops/base
+      - name: Temporary cluster integration
+        run: |
+          export PATH="$PWD/artifacts/bin:$PATH"
+          bash scripts/lab.sh prepare
+          kind load docker-image deployment-flow:local --name deployment-flow
+          kubectl --context kind-deployment-flow apply -k gitops/overlays/local
+          bash scripts/lab.sh verify
+      - name: Load test against kind
+        run: |
+          kubectl --context kind-deployment-flow -n deployment-flow port-forward service/api 18000:8000 > /tmp/load-forward.log 2>&1 &
+          forward=$!
+          trap 'kill "$forward" 2>/dev/null || true' EXIT
+          for _ in $(seq 1 30); do curl -fsS http://127.0.0.1:18000/health/ready >/dev/null && break; sleep 1; done
+          artifacts/bin/k6 run -e BASE_URL=http://127.0.0.1:18000 observability/load.js
+      - name: Cluster diagnostics
+        if: failure()
+        run: |
+          kubectl --context kind-deployment-flow get pods -A || true
+          kubectl --context kind-deployment-flow -n deployment-flow get events --sort-by=.lastTimestamp || true
+          kubectl --context kind-deployment-flow -n deployment-flow logs -l app=api --all-containers || true
+      - name: Remove temporary cluster
+        if: always()
+        run: artifacts/bin/kind delete cluster --name deployment-flow
