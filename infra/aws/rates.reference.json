@@ -1,0 +1,10 @@
+{
+  "region": "us-east-1 (cen\u00e1rio ilustrativo; reconfirmar antes de aplicar)",
+  "date": "2026-10-11",
+  "source": "docs/aws-finops.md#cen\u00e1rio-num\u00e9rico-de-refer\u00eancia",
+  "eks_hour": 0.1,
+  "ec2_hour": 0.0416,
+  "nat_hour": 0.045,
+  "ipv4_hour": 0.005,
+  "gp3_gib_month": 0.08
+}
