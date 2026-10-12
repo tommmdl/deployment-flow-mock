@@ -4,7 +4,7 @@ resources: [../../base]
 images:
   - name: deployment-flow
     newName: ghcr.io/tommmdl/deployment-flow-mock
-    digest: sha256:0000000000000000000000000000000000000000000000000000000000000000
+    digest: sha256:64720297e2f409652bb02a12d981a0aaddb0d02b3fe39695f3a6897383e87b9c
 patches:
   - target: {kind: Deployment, name: api}
     patch: |-
