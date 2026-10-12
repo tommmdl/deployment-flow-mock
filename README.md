@@ -2,7 +2,7 @@
 API FastAPI pequena para demonstrar entrega contínua, operação e segurança de supply chain. O laboratório usa recursos locais; a arquitetura AWS é uma referência paga separada e não é aplicada automaticamente.
 
 ## Início rápido econômico
-Pré-requisitos: Linux AMD64 (ou WSL2 com Docker acessível), Python 3.12, Git, Docker Engine + Compose v2, kubectl, kind 0.33.0, curl. Recomenda-se 4 CPUs, 8 GiB de RAM e 15 GiB de disco livres para kind + Argo CD. `make` é opcional.
+Pré-requisitos: Linux AMD64 (ou WSL2 com Docker acessível), Python 3.14.8, Git, Docker Engine + Compose v2, kubectl, kind 0.33.0, curl. Recomenda-se 4 CPUs, 8 GiB de RAM e 15 GiB de disco livres para kind + Argo CD. `make` é opcional.
 
 ```bash
 git clone https://github.com/tommmdl/deployment-flow-mock.git

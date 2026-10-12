@@ -1,10 +1,15 @@
-FROM python:3.12.15-alpine3.24@sha256:1b668429b3511ab407d8e00648891631b0b1a4d7e15e3ca70f38ab5b91ad4ab4
+FROM python:3.14.8-alpine3.24@sha256:f6a589d43c42b9e7f7dc67a12d37132491f362859a5d750607710cc56da3bc72
 ARG VERSION=dev
 ENV APP_VERSION=${VERSION}
 ENV PYTHONDONTWRITEBYTECODE=1 PYTHONUNBUFFERED=1 PIP_NO_CACHE_DIR=1
 WORKDIR /app
 COPY app/requirements.txt /tmp/requirements.txt
-RUN pip install --require-hashes -r /tmp/requirements.txt && addgroup -S -g 10001 app && adduser -S -D -H -u 10001 -G app app
+# Instaladores são necessários só no build; a API não instala pacotes em runtime.
+RUN python -m pip install --require-hashes -r /tmp/requirements.txt \
+    && python -m pip uninstall --yes pip \
+    && python -c "import shutil, sysconfig; shutil.rmtree(sysconfig.get_path('stdlib') + '/ensurepip')" \
+    && addgroup -S -g 10001 app \
+    && adduser -S -D -H -u 10001 -G app app
 COPY --chown=10001:10001 app/__init__.py app/main.py /app/app/
 USER 10001:10001
 EXPOSE 8000
