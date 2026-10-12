@@ -1,4 +1,6 @@
 # Evidências de validação
+Estado atualizado da publicação, promoção GitOps e validação local pendente: [ponto de retomada](retomada.md). As evidências abaixo são históricas; referências a publicação pendente descrevem o momento da validação inicial.
+
 Executado em 2026-10-11, Linux AMD64, Python 3.12.3. Não há badges nem resultados simulados.
 
 | Verificação executada | Resultado observado |
