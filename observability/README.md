@@ -1,6 +1,12 @@
 # Observabilidade local
 Laboratório complementar via Compose, sem AWS. API: 8000, Prometheus: 9090, Grafana: 3000, todos vinculados a localhost. Grafana permite leitura anônima só neste laboratório; não exponha essa configuração em produção.
 
+Validado localmente em 2026-10-14: target `api:8000` em `up`, configuração e quatro regras aprovadas pelo promtool, testes das regras aprovados, dashboard RED provisionado e seus quatro painéis retornando dados pelo datasource do Grafana. Carga de 50s com até 10 VUs: 2.771 requisições, zero falhas, checks 100%, p95 8,72ms. [Evidência](../docs/evidence/observability-compose-2026-10-14.json) e [resumo original da carga](../docs/evidence/load-compose-2026-10-14.txt). Validação do Grafana via API, sem inspeção visual no navegador.
+
+Acessos: [Prometheus](http://localhost:9090), [dashboard Grafana](http://localhost:3000/d/deployment-flow) e [API](http://localhost:8000). Serviços deixados ligados após a validação.
+
+Nesta sessão, o plugin `docker compose` não estava instalado. O binário oficial Compose v5.6.0 foi baixado e teve seu SHA256 verificado; está em `artifacts/bin/docker-compose` (ignorado pelo Git). Nesse ambiente, substitua `docker compose` por `artifacts/bin/docker-compose` nos comandos abaixo. A exportação JSON do k6 falhou por permissão no bind mount; o resumo textual da execução foi preservado.
+
 ```bash
 docker compose -f observability/compose.yaml up --build -d
 docker compose -f observability/compose.yaml run --rm --entrypoint promtool prometheus check rules /etc/prometheus/rules.yaml

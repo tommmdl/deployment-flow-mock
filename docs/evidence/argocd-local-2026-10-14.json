@@ -1,0 +1,44 @@
+{
+  "recorded_at_utc": "2026-10-14T22:13:06.654811+00:00",
+  "context": "kind-deployment-flow",
+  "application": {
+    "sync": "Synced",
+    "health": "Healthy",
+    "revision": "5a217944c7d2765e2c14fc9c2c60b68ba181d42d"
+  },
+  "deployment": {
+    "image": "ghcr.io/tommmdl/deployment-flow-mock@sha256:64720297e2f409652bb02a12d981a0aaddb0d02b3fe39695f3a6897383e87b9c",
+    "replicas": 2,
+    "readyReplicas": 2
+  },
+  "pods": [
+    {
+      "name": "api-79f7bddb4c-4926d",
+      "containers": [
+        {
+          "name": "api",
+          "ready": true,
+          "imageID": "ghcr.io/tommmdl/deployment-flow-mock@sha256:64720297e2f409652bb02a12d981a0aaddb0d02b3fe39695f3a6897383e87b9c"
+        }
+      ]
+    },
+    {
+      "name": "api-79f7bddb4c-hxrv8",
+      "containers": [
+        {
+          "name": "api",
+          "ready": true,
+          "imageID": "ghcr.io/tommmdl/deployment-flow-mock@sha256:64720297e2f409652bb02a12d981a0aaddb0d02b3fe39695f3a6897383e87b9c"
+        }
+      ]
+    }
+  ],
+  "registry_index": "sha256:64720297e2f409652bb02a12d981a0aaddb0d02b3fe39695f3a6897383e87b9c",
+  "registry_linux_amd64_manifest": "sha256:742fe528d1c88a9a3f1563cfa5c522a9db490dd5213fdc01950cd6243d7373ec",
+  "smoke": {
+    "command": "KUBECONFIG=\"$PWD/artifacts/kubeconfig\" bash scripts/lab.sh verify",
+    "exit_code": 0,
+    "output": "deployment \"api\" successfully rolled out\nSmoke HTTP: endpoints, readiness, m\u00e9tricas e c\u00e1lculo OK",
+    "note": "Uma tentativa inicial de curl ocorreu antes de o port-forward ficar dispon\u00edvel; a repeti\u00e7\u00e3o e o smoke conclu\u00edram com sucesso."
+  }
+}
