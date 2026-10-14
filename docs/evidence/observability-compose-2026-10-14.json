@@ -1,0 +1,249 @@
+{
+  "recorded_at_utc": "2026-10-14T22:21:09.688841+00:00",
+  "scope": "Compose observa sua própria API, separado dos pods kind.",
+  "compose_version": "v5.6.0",
+  "compose_binary_sha256": "40343e21ca777173e69cff5dbafeb37c6f81f3b0d57d9e597f036e95eb63e76a",
+  "containers": [
+    {
+      "name": "deployment-flow-mock-api-1",
+      "image": "deployment-flow-mock-api",
+      "image_id": "sha256:2051a7ebe1643313d133f62a9d683764938b906016b8b9ea96eca48acaf28f36",
+      "running": true,
+      "oom_killed": false,
+      "restart_count": 0,
+      "ports": {
+        "8000/tcp": [
+          {
+            "HostIp": "127.0.0.1",
+            "HostPort": "8000"
+          }
+        ]
+      }
+    },
+    {
+      "name": "deployment-flow-mock-prometheus-1",
+      "image": "prom/prometheus:v3.15.0",
+      "image_id": "sha256:66416213a3b43651d3521acc3987277b4f97ad0ae29acc581f910ef9bd3959bd",
+      "running": true,
+      "oom_killed": false,
+      "restart_count": 0,
+      "ports": {
+        "9090/tcp": [
+          {
+            "HostIp": "127.0.0.1",
+            "HostPort": "9090"
+          }
+        ]
+      }
+    },
+    {
+      "name": "deployment-flow-mock-grafana-1",
+      "image": "grafana/grafana:13.2.3",
+      "image_id": "sha256:fe28f8795cacedcab7a315750dc2ad6bb6f7b63ac720525cb76b15b6647a28c4",
+      "running": true,
+      "oom_killed": false,
+      "restart_count": 0,
+      "ports": {
+        "3000/tcp": [
+          {
+            "HostIp": "127.0.0.1",
+            "HostPort": "3000"
+          }
+        ]
+      }
+    }
+  ],
+  "promtool_config": "SUCCESS; configuração completa e 4 regras válidas",
+  "promtool_rule_tests": "SUCCESS; exit 0",
+  "smoke_http": "endpoints, readiness, métricas e cálculo OK; exit 0",
+  "prometheus_targets": [
+    {
+      "discoveredLabels": {
+        "__address__": "api:8000",
+        "__always_scrape_classic_histograms__": "false",
+        "__convert_classic_histograms_to_nhcb__": "false",
+        "__metrics_path__": "/metrics",
+        "__scheme__": "http",
+        "__scrape_interval__": "15s",
+        "__scrape_native_histograms__": "false",
+        "__scrape_timeout__": "10s",
+        "job": "api"
+      },
+      "labels": {
+        "instance": "api:8000",
+        "job": "api"
+      },
+      "scrapePool": "api",
+      "scrapeUrl": "http://api:8000/metrics",
+      "globalUrl": "http://api:8000/metrics",
+      "lastError": "",
+      "lastScrape": "2026-10-14T22:21:06.891816284Z",
+      "lastScrapeDuration": 0.0028709,
+      "health": "up",
+      "scrapeInterval": "15s",
+      "scrapeTimeout": "10s"
+    }
+  ],
+  "prometheus_rules": [
+    {
+      "name": "api-slo",
+      "file": "/etc/prometheus/rules.yaml",
+      "rules": [
+        {
+          "name": "api:error_ratio:5m",
+          "query": "(sum(rate(http_requests_total{job=\"api\",status=~\"5..\"}[5m])) or vector(0)) / clamp_min((sum(rate(http_requests_total{job=\"api\"}[5m])) or vector(0)), 0.001)",
+          "labels": {},
+          "health": "ok",
+          "evaluationTime": 0.0002664,
+          "lastEvaluation": "2026-10-14T22:21:00.475674409Z",
+          "type": "recording"
+        },
+        {
+          "state": "inactive",
+          "name": "APIUnavailable",
+          "query": "up{job=\"api\"} == 0 or absent(up{job=\"api\"})",
+          "duration": 120,
+          "keepFiringFor": 0,
+          "labels": {
+            "severity": "critical"
+          },
+          "annotations": {
+            "runbook": "docs/runbooks.md",
+            "summary": "API não pode ser coletada"
+          },
+          "alerts": [],
+          "health": "ok",
+          "evaluationTime": 6.06e-05,
+          "lastEvaluation": "2026-10-14T22:21:00.475946209Z",
+          "type": "alerting"
+        },
+        {
+          "state": "inactive",
+          "name": "FastErrorBudgetBurn",
+          "query": "api:error_ratio:5m > 0.0144",
+          "duration": 300,
+          "keepFiringFor": 0,
+          "labels": {
+            "severity": "critical"
+          },
+          "annotations": {
+            "runbook": "docs/runbooks.md",
+            "summary": "Consumo rápido do orçamento de erro (14.4x para SLO 99.9%)"
+          },
+          "alerts": [],
+          "health": "ok",
+          "evaluationTime": 3.47e-05,
+          "lastEvaluation": "2026-10-14T22:21:00.476009209Z",
+          "type": "alerting"
+        },
+        {
+          "state": "inactive",
+          "name": "HighLatency",
+          "query": "histogram_quantile(0.95, sum by (le) (rate(http_request_duration_seconds_bucket{job=\"api\"}[5m]))) > 0.3",
+          "duration": 300,
+          "keepFiringFor": 0,
+          "labels": {
+            "severity": "warning"
+          },
+          "annotations": {
+            "runbook": "docs/runbooks.md",
+            "summary": "p95 acima de 300ms"
+          },
+          "alerts": [],
+          "health": "ok",
+          "evaluationTime": 0.0001297,
+          "lastEvaluation": "2026-10-14T22:21:00.476046209Z",
+          "type": "alerting"
+        }
+      ],
+      "interval": 15,
+      "limit": 0,
+      "evaluationTime": 0.000526,
+      "lastEvaluation": "2026-10-14T22:21:00.475651709Z"
+    }
+  ],
+  "grafana_health": {
+    "database": "ok",
+    "version": "13.2.3",
+    "commit": "90ffed056f0884267356c12a0eeb72a022af53f1"
+  },
+  "dashboard": {
+    "uid": "deployment-flow",
+    "title": "Deployment Flow — RED",
+    "panels_via_grafana_datasource": [
+      {
+        "title": "Requisições/s",
+        "expression": "sum(rate(http_requests_total[5m]))",
+        "result": [
+          {
+            "metric": {},
+            "value": [
+              1792016469.623,
+              "9.513908296296297"
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Taxa de erros 5xx",
+        "expression": "(sum(rate(http_requests_total{status=~\"5..\"}[5m])) or vector(0)) / clamp_min((sum(rate(http_requests_total[5m])) or vector(0)), 0.001)",
+        "result": [
+          {
+            "metric": {},
+            "value": [
+              1792016469.628,
+              "0"
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Latência p95",
+        "expression": "histogram_quantile(0.95, sum by (le) (rate(http_request_duration_seconds_bucket[5m])))",
+        "result": [
+          {
+            "metric": {},
+            "value": [
+              1792016469.633,
+              "0.00827508504400205"
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Scrape disponível",
+        "expression": "up{job=\"api\"}",
+        "result": [
+          {
+            "metric": {
+              "__name__": "up",
+              "instance": "api:8000",
+              "job": "api"
+            },
+            "value": [
+              1792016469.637,
+              "1"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "load": {
+    "exit_code": 0,
+    "duration_seconds": 50,
+    "max_vus": 10,
+    "requests": 2771,
+    "failed_requests": 0,
+    "checks_succeeded_percent": 100,
+    "p95_ms": 8.72,
+    "thresholds_passed": true,
+    "source": "load-compose-2026-10-14.txt",
+    "export_note": "A exportação JSON não foi gravada por permissão no bind mount; o resumo textual foi preservado."
+  },
+  "limitations": [
+    "Validação do Grafana via API e datasource; sem inspeção visual no navegador.",
+    "Janela local curta, insuficiente para afirmar cumprimento do SLO de 30 dias.",
+    "Sem Alertmanager: regras avaliadas, sem entrega de notificações."
+  ]
+}

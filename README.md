@@ -1,6 +1,8 @@
 # Deployment Flow — portfólio DevOps/SRE
 API FastAPI pequena para demonstrar entrega contínua, operação e segurança de supply chain. O laboratório usa recursos locais; a arquitetura AWS é uma referência paga separada e não é aplicada automaticamente.
 
+Implantação local validada: Argo CD `Synced`/`Healthy`, duas réplicas prontas e smoke HTTP aprovado. Consulte o [ponto de retomada](docs/retomada.md) para as evidências e próximos passos.
+
 ## Início rápido econômico
 Pré-requisitos: Linux AMD64 (ou WSL2 com Docker acessível), Python 3.14.8, Git, Docker Engine + Compose v2, kubectl, kind 0.33.0, curl. Recomenda-se 4 CPUs, 8 GiB de RAM e 15 GiB de disco livres para kind + Argo CD. `make` é opcional.
 

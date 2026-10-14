@@ -1,4 +1,8 @@
 # Evidências de validação
+Estado atualizado da publicação, promoção GitOps e validação local concluída: [ponto de retomada](retomada.md). Em 2026-10-14, Argo CD `Synced`/`Healthy`, duas réplicas prontas no digest esperado e `lab.sh verify` aprovado; [evidência sanitizada](evidence/argocd-local-2026-10-14.json). As evidências abaixo são históricas; referências a publicação pendente descrevem o momento da validação inicial.
+
+Observabilidade Compose também validada em 2026-10-14: Prometheus coleta a API; Grafana provisionou dashboard/datasource e retornou dados nos quatro painéis via API. Promtool aprovou configuração e testes das regras. Carga: 2.771 requisições, zero falhas, checks 100%, p95 8,72ms. [Evidência completa e limitações](evidence/observability-compose-2026-10-14.json).
+
 Executado em 2026-10-11, Linux AMD64, Python 3.12.3. Não há badges nem resultados simulados.
 
 | Verificação executada | Resultado observado |
