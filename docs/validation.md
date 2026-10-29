@@ -37,9 +37,9 @@ Algumas validações iniciais encontraram problemas que foram corrigidos: linhas
 
 Resumo original de carga em [evidence/load-local.json](evidence/load-local.json). Este teste mediu o processo local, sem limites de container; não representa capacidade de produção nem resultados de kind.
 
-PR de entrega: https://github.com/tommmdl/deployment-flow-mock/pull/1. O [primeiro CI](https://github.com/tommmdl/deployment-flow-mock/actions/runs/38182350181) construiu a imagem Bookworm, mas falhou no gate de vulnerabilidades HIGH/CRITICAL do sistema. Alteração: Alpine 3.24 com digest e gate mantido; resultado final deve ser conferido nos checks do PR. A execução inicial não chegou à integração kind.
+PR de entrega: https://github.com/tommmdl/gitops-delivery-platform/pull/1. O [primeiro CI](https://github.com/tommmdl/gitops-delivery-platform/actions/runs/38182350181) construiu a imagem Bookworm, mas falhou no gate de vulnerabilidades HIGH/CRITICAL do sistema. Alteração: Alpine 3.24 com digest e gate mantido; resultado final deve ser conferido nos checks do PR. A execução inicial não chegou à integração kind.
 
 ## CI remoto concluído
-[Run 38182512174](https://github.com/tommmdl/deployment-flow-mock/actions/runs/38182512174), commit `7f4eb192198abd8c5e9764b211079273418be2da`: **success**. Lint/testes, locks de ferramentas, Gitleaks, schemas/políticas, Terraform, regras Prometheus, build, scan HIGH/CRITICAL, kind 1.35.8, smoke HTTP, carga k6 e remoção do cluster passaram. [Trechos originais de kind e carga](evidence/ci-kind.txt).
+[Run 38182512174](https://github.com/tommmdl/gitops-delivery-platform/actions/runs/38182512174), commit `7f4eb192198abd8c5e9764b211079273418be2da`: **success**. Lint/testes, locks de ferramentas, Gitleaks, schemas/políticas, Terraform, regras Prometheus, build, scan HIGH/CRITICAL, kind 1.35.8, smoke HTTP, carga k6 e remoção do cluster passaram. [Trechos originais de kind e carga](evidence/ci-kind.txt).
 
 O impedimento Docker é apenas do ambiente local. O CI comprova comportamento em container e kind; não comprova Argo CD ou publicação de artefatos, que aguardam configuração/revisão. O commit seguinte registra essas evidências e ajuste de formatação documental; confira também seu check no PR.

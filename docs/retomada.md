@@ -37,9 +37,9 @@ Registro em 2026-10-11 (America/Sao_Paulo; merge em 2026-10-12 UTC). Retomar som
 ## Estado concluído
 
 - CI, publicação no GHCR, assinatura Cosign e promoção GitOps concluídos.
-- [PR GitOps #8](https://github.com/tommmdl/deployment-flow-mock/pull/8) mesclado em `5a217944c7d2765e2c14fc9c2c60b68ba181d42d` (`5a21794`). O diff alterou somente o digest em `gitops/overlays/production/kustomization.yaml`.
-- [CI do commit revisado](https://github.com/tommmdl/deployment-flow-mock/actions/runs/38188707704/job/114616572758): `quality` passou em `3851ee7be1ed0b18ab3da2a15e36e1360c4240e8`.
-- [Release concluída](https://github.com/tommmdl/deployment-flow-mock/actions/runs/38188436861): publicação e etapa de assinatura passaram; o digest usado na assinatura corresponde ao declarado no GitOps. Não foi realizada verificação criptográfica independente contra o registry nesta sessão.
+- [PR GitOps #8](https://github.com/tommmdl/gitops-delivery-platform/pull/8) mesclado em `5a217944c7d2765e2c14fc9c2c60b68ba181d42d` (`5a21794`). O diff alterou somente o digest em `gitops/overlays/production/kustomization.yaml`.
+- [CI do commit revisado](https://github.com/tommmdl/gitops-delivery-platform/actions/runs/38188707704/job/114616572758): `quality` passou em `3851ee7be1ed0b18ab3da2a15e36e1360c4240e8`.
+- [Release concluída](https://github.com/tommmdl/gitops-delivery-platform/actions/runs/38188436861): publicação e etapa de assinatura passaram; o digest usado na assinatura corresponde ao declarado no GitOps. Não foi realizada verificação criptográfica independente contra o registry nesta sessão.
 - Imagem declarada e renderizada com Kustomize:
 
 ```text

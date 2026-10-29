@@ -8,8 +8,8 @@ Execute os comandos na raiz do repositório. Escolha entre o overlay local e o f
 Pré-requisitos: Linux AMD64 (ou WSL2 com Docker acessível), Python 3.14.8, Git, Docker Engine + Compose v2, kubectl, kind 0.33.0, curl. Recomenda-se 4 CPUs, 8 GiB de RAM e 15 GiB de disco livres para kind + Argo CD. `make` é opcional.
 
 ```bash
-git clone https://github.com/tommmdl/deployment-flow-mock.git
-cd deployment-flow-mock
+git clone https://github.com/tommmdl/gitops-delivery-platform.git
+cd gitops-delivery-platform
 python3 -m venv .venv
 .venv/bin/pip install --require-hashes -r app/requirements-dev.txt
 .venv/bin/ruff check app scripts

@@ -2,7 +2,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: AppProject
 metadata: {name: deployment-flow, namespace: argocd}
 spec:
-  sourceRepos: [https://github.com/tommmdl/deployment-flow-mock.git]
+  sourceRepos: [https://github.com/tommmdl/gitops-delivery-platform.git]
   destinations:
     - namespace: deployment-flow
       server: https://kubernetes.default.svc

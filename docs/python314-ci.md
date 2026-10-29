@@ -1,8 +1,8 @@
 # CI da migração Python 3.14
 
-PR #2: https://github.com/tommmdl/deployment-flow-mock/pull/2.
+PR #2: https://github.com/tommmdl/gitops-delivery-platform/pull/2.
 
-O CI inicial construiu a imagem 3.14.8/Alpine 3.24, mas o Trivy encontrou quatro achados HIGH: msgpack 1.1.2 (GHSA-6v7p-g79w-8964), setuptools 70.3.0 (CVE-2025-47273), urllib3 2.7.0 (CVE-2026-97687 e CVE-2026-97689). Fonte: https://github.com/tommmdl/deployment-flow-mock/actions/runs/38183209859.
+O CI inicial construiu a imagem 3.14.8/Alpine 3.24, mas o Trivy encontrou quatro achados HIGH: msgpack 1.1.2 (GHSA-6v7p-g79w-8964), setuptools 70.3.0 (CVE-2025-47273), urllib3 2.7.0 (CVE-2026-97687 e CVE-2026-97689). Fonte: https://github.com/tommmdl/gitops-delivery-platform/actions/runs/38183209859.
 
 A inspeção das camadas Linux AMD64 da base, verificadas pelo digest publicado, confirmou essas versões em `usr/local/lib/python3.14/site-packages/pip/_vendor/vendor.txt`. São dependências internas do pip 26.2.1, também listadas em sua [fonte oficial](https://github.com/pypa/pip/blob/26.2.1/src/pip/_vendor/vendor.txt). Instalar versões novas desses pacotes no site-packages da aplicação não atualiza as cópias privadas do pip.
 
