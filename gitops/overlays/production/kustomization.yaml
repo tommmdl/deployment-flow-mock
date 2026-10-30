@@ -3,8 +3,8 @@ kind: Kustomization
 resources: [../../base]
 images:
   - name: deployment-flow
-    newName: ghcr.io/tommmdl/deployment-flow-mock
-    digest: sha256:64720297e2f409652bb02a12d981a0aaddb0d02b3fe39695f3a6897383e87b9c
+    newName: ghcr.io/tommmdl/gitops-delivery-platform
+    digest: sha256:eb517cc28d47f2dd4ee50af8e39425971224188e307e07981bc223162d90280c
 patches:
   - target: {kind: Deployment, name: api}
     patch: |-
